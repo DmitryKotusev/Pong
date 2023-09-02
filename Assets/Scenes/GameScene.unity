@@ -172,6 +172,7 @@ MonoBehaviour:
   platform: {fileID: 2031245615}
   upperBorderCollider: {fileID: 1287387685}
   lowerBorderCollider: {fileID: 1677124168}
+  ballSpawner: {fileID: 1044212707}
 --- !u!1 &9836861
 GameObject:
   m_ObjectHideFlags: 0

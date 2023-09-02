@@ -46,6 +46,7 @@ namespace Pong
             if (newBall == null)
             {
                 newBall = Instantiate(ballPrefab, ballsPoolContainer);
+                newBall.name = $"Ball {ballsPool.Count + activeBalls.Count}";
                 activeBalls.Add(newBall);
                 newBall.SetPoolHandler(this);
             }

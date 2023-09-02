@@ -14,6 +14,9 @@ namespace Pong
         private float speed;
         private Vector3 moveDirection;
 
+        public float Speed => speed;
+        public Vector3 MoveDirection => moveDirection;
+
         public void SetPoolHandler(IPoolHandler<Ball> poolHandler)
         {
             this.poolHandler = poolHandler;
@@ -87,7 +90,7 @@ namespace Pong
                         collisionAngle = 0;
                     }
 
-                    collisionAngle = Mathf.Clamp(collisionAngle, -80f, 80f);
+                    collisionAngle = Mathf.Clamp(collisionAngle, -70f, 70f);
 
                     Vector2 finalReflectionDirection = (Quaternion.AngleAxis(collisionAngle, Vector3.forward) * primaryReflectionDirection).normalized;
 
