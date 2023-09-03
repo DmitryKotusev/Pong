@@ -24,4 +24,4 @@ MonoBehaviour:
   ballBounceSpeedIncrease: 0.5
   ballMaxSpeed: 40
   playerPlatformMovementSpeed: 15
-  aiPlatformMovementSpeed: 12
+  aiPlatformMovementSpeed: 8
