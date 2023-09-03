@@ -4506,6 +4506,22 @@ MonoBehaviour:
     m_ActionId: 82bd925e-c4bb-4680-ac22-c5c6eb9d40b3
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow,/Peratech
       Holdco Limited Hydra Force Sensor/stick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1770486146}
+        m_TargetAssemblyTypeName: Pong.PlayerController, Assembly-CSharp
+        m_MethodName: OnEscape
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 42d5100b-5c2a-4c46-b904-82e3fa6cb017
+    m_ActionName: Player/Esc[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

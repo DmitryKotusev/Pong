@@ -25,6 +25,11 @@ namespace Pong
 
         public void SpawnBallWithDelay()
         {
+            if (!gameObject.activeInHierarchy)
+            {
+                return;
+            }
+
             StartCoroutine(SpawnBallWithDelayCoroutine(gameSettings.BallSpawnPauseTime));
         }
 
@@ -114,8 +119,10 @@ namespace Pong
 
             if (booster is CloneBallBooster)
             {
-                SpawnBallAtSpecificPosition(booster.transform.position);
-                SpawnBallAtSpecificPosition(booster.transform.position);
+                for (int i = 0; i < gameSettings.BallCloneBoosterAmount; i++)
+                {
+                    SpawnBallAtSpecificPosition(booster.transform.position);
+                }
             }
         }
 

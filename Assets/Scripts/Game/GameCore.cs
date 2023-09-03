@@ -60,6 +60,11 @@ namespace Pong
             currentState?.OnContinueGame();
         }
 
+        private void OnFinishGame()
+        {
+            currentState?.OnFinishGame();
+        }
+
         private void OnPlayerWon(object messageObject)
         {
             currentState?.OnPlayerWon(messageObject);
@@ -69,6 +74,7 @@ namespace Pong
         {
             eventsHub.StartGameEvent.ScriptableSignal += OnStartGame;
             eventsHub.ContinueGameEvent.ScriptableSignal += OnContinueGame;
+            eventsHub.FinishGameEvent.ScriptableSignal += OnFinishGame;
             eventsHub.PlayerWonEvent.ScriptableSignal += OnPlayerWon;
         }
 
@@ -76,6 +82,7 @@ namespace Pong
         {
             eventsHub.StartGameEvent.ScriptableSignal -= OnStartGame;
             eventsHub.ContinueGameEvent.ScriptableSignal -= OnContinueGame;
+            eventsHub.FinishGameEvent.ScriptableSignal -= OnFinishGame;
             eventsHub.PlayerWonEvent.ScriptableSignal -= OnPlayerWon;
         }
     }

@@ -21,6 +21,15 @@ namespace Pong
             // Debug.Log($"[PlayerController] OnMove, {movement}");
         }
 
+        public void OnEscape(InputAction.CallbackContext context)
+        {
+            if (!context.started && !context.canceled)
+            {
+                Debug.Log($"[PlayerController] OnEscape, control name: {context.control.name}");
+                eventsHub.FinishGameEvent.RaiseEvent();
+            }
+        }
+
         private void Update()
         {
             float deltaY = movementInversion * movement.y * gameSettings.PlayerPlatformMovementSpeed * Time.deltaTime;

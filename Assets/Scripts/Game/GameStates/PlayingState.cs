@@ -12,6 +12,13 @@ namespace Pong.GameStates
             this.finalWinMessageText = finalWinMessageText;
         }
 
+        public override void OnFinishGame()
+        {
+            base.OnFinishGame();
+
+            stateSwitcher.SwitchState<PlayMenuState>();
+        }
+
         public override void OnPlayerWon(object messageObject)
         {
             base.OnPlayerWon(messageObject);

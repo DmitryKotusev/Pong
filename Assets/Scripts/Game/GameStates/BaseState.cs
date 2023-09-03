@@ -32,6 +32,10 @@ namespace Pong.GameStates
         {
         }
 
+        public virtual void OnFinishGame()
+        {
+        }
+
         public virtual void OnPlayerWon(object messageObject)
         {
         }
