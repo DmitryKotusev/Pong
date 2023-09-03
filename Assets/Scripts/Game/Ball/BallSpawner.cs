@@ -1,11 +1,16 @@
+using Pong.ScriptableEvents;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Pong
 {
     public class BallSpawner : MonoBehaviour, IPoolHandler<Ball>
     {
+        [SerializeField] private GameSettings gameSettings;
+        [SerializeField] private ScriptableEventsHub eventsHub;
+
+        [Space(10)]
         [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
         [SerializeField] private Transform ballsPoolContainer;
 
@@ -16,6 +21,21 @@ namespace Pong
 
         private List<Ball> activeBalls = new List<Ball>();
         public List<Ball> ActiveBalls => activeBalls;
+
+        public void SpawnBallWithDelay()
+        {
+            StartCoroutine(SpawnBallWithDelayCoroutine(gameSettings.BallSpawnPauseTime));
+        }
+
+        public void ResetBalls()
+        {
+            List<Ball> stillActiveBalls = new List<Ball>(ActiveBalls);
+
+            foreach (var ball in stillActiveBalls)
+            {
+                ReturnToPool(ball);
+            }
+        }
 
         public void ReturnToPool(Ball ball)
         {
@@ -55,6 +75,41 @@ namespace Pong
             newBall.transform.position = spawnPosition;
             newBall.SetStartSpeed();
             newBall.SetRandomMoveDirection();
+        }
+
+        private IEnumerator SpawnBallWithDelayCoroutine(float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+
+            SpawnBall();
+        }
+
+        private void OnScoreGoal(object gatesColliderObject)
+        {
+            if (ActiveBalls.Count == 0)
+            {
+                SpawnBallWithDelay();
+            }
+        }
+
+        private void OnEnable()
+        {
+            SubscribeToScriptableEvents();
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeFromScriptableEvents();
+        }
+
+        private void SubscribeToScriptableEvents()
+        {
+            eventsHub.ScoreGoalEvent.ScriptableSignal += OnScoreGoal;
+        }
+
+        private void UnsubscribeFromScriptableEvents()
+        {
+            eventsHub.ScoreGoalEvent.ScriptableSignal -= OnScoreGoal;
         }
     }
 }

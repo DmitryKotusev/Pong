@@ -7,9 +7,13 @@ namespace Pong.ScriptableEvents
     {
         [SerializeField] private ScriptableEvent startGameEvent;
         [SerializeField] private ScriptableEvent continueGameEvent;
+        [SerializeField] private ScriptableEventObject scoreGoalEvent;
+        [SerializeField] private ScriptableEventObject playerWonEvent;
 
         public ScriptableEvent StartGameEvent => startGameEvent;
         public ScriptableEvent ContinueGameEvent => continueGameEvent;
+        public ScriptableEventObject ScoreGoalEvent => scoreGoalEvent;
+        public ScriptableEventObject PlayerWonEvent => playerWonEvent;
     }
 
 }

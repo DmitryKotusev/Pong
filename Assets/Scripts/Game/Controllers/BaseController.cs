@@ -10,6 +10,11 @@ namespace Pong
         [SerializeField] protected BoxCollider2D upperBorderCollider;
         [SerializeField] protected BoxCollider2D lowerBorderCollider;
 
+        public void ResetController()
+        {
+            platform.transform.position = new Vector2() { x = platform.transform.position.x, y = 0 };
+        }
+
         protected void MovePlatform(float deltaY)
         {
             float lowerYBorder = lowerBorderCollider.size.y / 2 + lowerBorderCollider.transform.position.y + platform.transform.localScale.y / 2;

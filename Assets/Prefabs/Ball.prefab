@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSettings: {fileID: 11400000, guid: 6f1fe68649ea599458b285a706200f62, type: 2}
+  eventsHub: {fileID: 11400000, guid: a94cb1cd8d5dc324cb7574721da5d5e9, type: 2}
 --- !u!61 &3263143059379631235
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -28,6 +28,8 @@ namespace Pong
         [SerializeField] private float ballStartSpeed = 2f;
         [SerializeField] private float ballBounceSpeedIncrease = 0.4f;
         [SerializeField] private float ballMaxSpeed = 40f;
+        [Tooltip("Time after goal till the next ball is spawned")]
+        [SerializeField] private float ballSpawnPauseTime = 2f;
 
         [Space(20)]
         [Header("Platform settings")]
@@ -41,6 +43,7 @@ namespace Pong
         public float BallStartSpeed => ballStartSpeed;
         public float BallBounceSpeedIncrease => ballBounceSpeedIncrease;
         public float BallMaxSpeed => ballMaxSpeed;
+        public float BallSpawnPauseTime => ballSpawnPauseTime;
         public float PlayerPlatformMovementSpeed => playerPlatformMovementSpeed;
         public float AiPlatformMovementSpeed => aiPlatformMovementSpeed;
     }

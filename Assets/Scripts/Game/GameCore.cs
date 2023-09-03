@@ -12,6 +12,7 @@ namespace Pong
         [SerializeField] private ScriptableEventsHub eventsHub;
         [Space(10)]
         [SerializeField] private Utilities.StatebleItem visualStateController;
+        [SerializeField] private TMPro.TMP_Text finalWinMessageText;
 
         private BaseState currentState;
 
@@ -31,7 +32,7 @@ namespace Pong
         {
             statesCollection = new List<BaseState>()
             {
-                new PlayingState(this, gameSettings, visualStateController),
+                new PlayingState(finalWinMessageText, this, gameSettings, visualStateController),
                 new PlayMenuState(this, gameSettings, visualStateController),
                 new ResultMenuState(this, gameSettings, visualStateController),
             };
@@ -59,16 +60,23 @@ namespace Pong
             currentState?.OnContinueGame();
         }
 
+        private void OnPlayerWon(object messageObject)
+        {
+            currentState?.OnPlayerWon(messageObject);
+        }
+
         private void SubscribeToScriptableEvents()
         {
             eventsHub.StartGameEvent.ScriptableSignal += OnStartGame;
             eventsHub.ContinueGameEvent.ScriptableSignal += OnContinueGame;
+            eventsHub.PlayerWonEvent.ScriptableSignal += OnPlayerWon;
         }
 
         private void UnsubscribeFromScriptableEvents()
         {
             eventsHub.StartGameEvent.ScriptableSignal -= OnStartGame;
             eventsHub.ContinueGameEvent.ScriptableSignal -= OnContinueGame;
+            eventsHub.PlayerWonEvent.ScriptableSignal -= OnPlayerWon;
         }
     }
 }

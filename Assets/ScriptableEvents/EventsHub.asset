@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startGameEvent: {fileID: 11400000, guid: 65b675b31b653224fb5bdadde26cbf80, type: 2}
   continueGameEvent: {fileID: 11400000, guid: c043ddd5e13ddca46b40d2a817b7bea6, type: 2}
+  scoreGoalEvent: {fileID: 11400000, guid: 12f4e63a55c4a3c4a8dffd3eac53e60c, type: 2}
+  playerWonEvent: {fileID: 11400000, guid: f166167015538da44a395e8abdd98ecd, type: 2}

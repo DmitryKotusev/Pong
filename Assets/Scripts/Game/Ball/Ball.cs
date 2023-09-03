@@ -1,13 +1,13 @@
+using Pong.ScriptableEvents;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
 
 namespace Pong
 {
     public class Ball : MonoBehaviour
     {
         [SerializeField] private GameSettings gameSettings;
+        [SerializeField] private ScriptableEventsHub eventsHub;
 
         private IPoolHandler<Ball> poolHandler;
 
@@ -57,8 +57,8 @@ namespace Pong
                 if (hit.transform.GetComponent<Gate>() != null)
                 {
                     poolHandler.ReturnToPool(this);
+                    eventsHub.ScoreGoalEvent.RaiseEvent(hit.collider);
                     Debug.Log($"[Ball] Update, hit gate");
-                    // Send event of hitting gate;
                     return;
                 }
 

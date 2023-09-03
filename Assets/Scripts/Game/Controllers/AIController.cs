@@ -44,6 +44,7 @@ namespace Pong
             {
                 targetPositionY += orderedBallsWithArrivalTime[0].Key.MoveDirection.y * orderedBallsWithArrivalTime[0].Value * orderedBallsWithArrivalTime[0].Key.Speed;
             }
+            /////////////////////////////////
 
             float desiredDeltaY = targetPositionY - platform.transform.position.y;
             float deltaYSign = Mathf.Sign(desiredDeltaY);
