@@ -1,3 +1,4 @@
+using Pong.ScriptableEvents;
 using UnityEngine;
 
 namespace Pong
@@ -5,12 +6,15 @@ namespace Pong
     public abstract class BaseController : MonoBehaviour
     {
         [SerializeField] protected GameSettings gameSettings;
+        [SerializeField] protected ScriptableEventsHub eventsHub;
+
+        [Space(0)]
         [SerializeField] protected Platform platform;
 
         [SerializeField] protected BoxCollider2D upperBorderCollider;
         [SerializeField] protected BoxCollider2D lowerBorderCollider;
 
-        public void ResetController()
+        public virtual void ResetController()
         {
             platform.transform.position = new Vector2() { x = platform.transform.position.x, y = 0 };
         }

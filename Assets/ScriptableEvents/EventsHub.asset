@@ -16,3 +16,4 @@ MonoBehaviour:
   continueGameEvent: {fileID: 11400000, guid: c043ddd5e13ddca46b40d2a817b7bea6, type: 2}
   scoreGoalEvent: {fileID: 11400000, guid: 12f4e63a55c4a3c4a8dffd3eac53e60c, type: 2}
   playerWonEvent: {fileID: 11400000, guid: f166167015538da44a395e8abdd98ecd, type: 2}
+  boosterHitEvent: {fileID: 11400000, guid: d871b8eac6e052f49b636b0da118744c, type: 2}

@@ -19,9 +19,13 @@ MonoBehaviour:
   - 1
   - 1
   boosterSpawnTime: 20
-  requiredScoreCount: 2
+  requiredScoreCount: 3
   ballStartSpeed: 10
   ballBounceSpeedIncrease: 0.5
   ballMaxSpeed: 40
+  ballSpawnPauseTime: 2
   playerPlatformMovementSpeed: 15
-  aiPlatformMovementSpeed: 8
+  aiPlatformMovementSpeed: 10
+  platformSizeChangeStep: 0.5
+  platformMaxSize: 4
+  platformMinSize: 0.5

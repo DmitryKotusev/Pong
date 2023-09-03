@@ -20,6 +20,7 @@ namespace Pong
         private List<Ball> ballsPool = new List<Ball>();
 
         private List<Ball> activeBalls = new List<Ball>();
+
         public List<Ball> ActiveBalls => activeBalls;
 
         public void SpawnBallWithDelay()
@@ -58,9 +59,19 @@ namespace Pong
             return ball;
         }
 
-        public void SpawnBall()
+        public void SpawnBallAtRandomPosition()
         {
-            Vector3 spawnPosition = spawnPoints[Random.Range(0, spawnPoints.Count)].position;
+            SpawnBall();
+        }
+
+        public void SpawnBallAtSpecificPosition(Vector3 specificSpawnPosition)
+        {
+            SpawnBall(specificSpawnPosition);
+        }
+
+        private void SpawnBall(Vector3? specificSpawnPosition = null)
+        {
+            Vector3 spawnPosition = specificSpawnPosition.HasValue ? specificSpawnPosition.Value : spawnPoints[Random.Range(0, spawnPoints.Count)].position;
             Ball newBall = GetFromPool();
 
             if (newBall == null)
@@ -71,7 +82,6 @@ namespace Pong
                 newBall.SetPoolHandler(this);
             }
 
-
             newBall.transform.position = spawnPosition;
             newBall.SetStartSpeed();
             newBall.SetRandomMoveDirection();
@@ -81,7 +91,7 @@ namespace Pong
         {
             yield return new WaitForSeconds(seconds);
 
-            SpawnBall();
+            SpawnBallAtRandomPosition();
         }
 
         private void OnScoreGoal(object gatesColliderObject)
@@ -89,6 +99,23 @@ namespace Pong
             if (ActiveBalls.Count == 0)
             {
                 SpawnBallWithDelay();
+            }
+        }
+
+        private void OnBoosterHit(object boosterObject)
+        {
+            BaseBooster booster = boosterObject as BaseBooster;
+
+            if (booster == null)
+            {
+                Debug.LogError("[BallSpawner] OnBoosterHit, cast parameter error: could not cast to BaseBooster");
+                return;
+            }
+
+            if (booster is CloneBallBooster)
+            {
+                SpawnBallAtSpecificPosition(booster.transform.position);
+                SpawnBallAtSpecificPosition(booster.transform.position);
             }
         }
 
@@ -105,11 +132,13 @@ namespace Pong
         private void SubscribeToScriptableEvents()
         {
             eventsHub.ScoreGoalEvent.ScriptableSignal += OnScoreGoal;
+            eventsHub.BoosterHitEvent.ScriptableSignal += OnBoosterHit;
         }
 
         private void UnsubscribeFromScriptableEvents()
         {
             eventsHub.ScoreGoalEvent.ScriptableSignal -= OnScoreGoal;
+            eventsHub.BoosterHitEvent.ScriptableSignal -= OnBoosterHit;
         }
     }
 }

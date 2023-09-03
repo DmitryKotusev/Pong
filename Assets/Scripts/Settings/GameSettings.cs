@@ -8,6 +8,7 @@ namespace Pong
         [Tooltip("The time the game lasts (in seconds)")]
         [SerializeField] private float gameTime = 120f;
 
+        [Tooltip("Must be of size 4 for every booster type")]
         [SerializeField]
         private float[] boosterTypeSpawnWieghts = new float[]
         {
@@ -35,6 +36,9 @@ namespace Pong
         [Header("Platform settings")]
         [SerializeField] private float playerPlatformMovementSpeed = 5f;
         [SerializeField] private float aiPlatformMovementSpeed = 5f;
+        [SerializeField] private float platformSizeChangeStep = 0.5f;
+        [SerializeField] private float platformMaxSize = 4f;
+        [SerializeField] private float platformMinSize = 0.5f;
 
         public float GameTime => gameTime;
         public float[] BoosterTypeSpawnWieghts => boosterTypeSpawnWieghts;
@@ -46,5 +50,8 @@ namespace Pong
         public float BallSpawnPauseTime => ballSpawnPauseTime;
         public float PlayerPlatformMovementSpeed => playerPlatformMovementSpeed;
         public float AiPlatformMovementSpeed => aiPlatformMovementSpeed;
+        public float PlatformSizeChangeStep => platformSizeChangeStep;
+        public float PlatformMaxSize => platformMaxSize;
+        public float PlatformMinSize => platformMinSize;
     }
 }

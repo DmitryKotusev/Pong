@@ -103,6 +103,19 @@ namespace Pong
                     Debug.Log($"[Ball] Update, hit platform");
                     return;
                 }
+
+                if (hit.transform.GetComponent<BaseBooster>() != null)
+                {
+                    BaseBooster booster = hit.transform.GetComponent<BaseBooster>();
+                    booster.OnHit();
+
+                    if (booster is CloneBallBooster)
+                    {
+                        poolHandler.ReturnToPool(this);
+                    }
+
+                    Debug.Log($"[Ball] Update, hit booster");
+                }
             }
 
             transform.position += deltaPosition;
