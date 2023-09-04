@@ -9,6 +9,9 @@ namespace Pong
         [SerializeField] private ScriptableEventsHub eventsHub;
 
         [Space(10)]
+        [SerializeField] private Timer timer;
+
+        [Space(10)]
         [SerializeField] private BoxCollider2D firstPlayerGateCollider;
         [SerializeField] private BoxCollider2D secondPlayerGateCollider;
 
@@ -19,6 +22,23 @@ namespace Pong
         private int score1;
         private int score2;
 
+        private const string player1WinMessage = "Player 1 won!";
+        private const string player2WinMessage = "Player 2 won!";
+        private const string drawGameMessage = "A draw game.";
+
+        public void OnTimeUp()
+        {
+            if (Score1 > Score2)
+            {
+                eventsHub.PlayerWonEvent.RaiseEvent(player1WinMessage);
+            }
+            else if (Score2 > Score1)
+            {
+                eventsHub.PlayerWonEvent.RaiseEvent(player2WinMessage);
+            }
+
+            eventsHub.PlayerWonEvent.RaiseEvent(drawGameMessage);
+        }
 
         public int Score1
         {
@@ -30,7 +50,7 @@ namespace Pong
 
                 if (score1 >= gameSettings.RequiredScoreCount)
                 {
-                    eventsHub.PlayerWonEvent.RaiseEvent("Player 1 won!");
+                    eventsHub.PlayerWonEvent.RaiseEvent(player1WinMessage);
                 }
             }
         }
@@ -45,7 +65,7 @@ namespace Pong
 
                 if (score2 >= gameSettings.RequiredScoreCount)
                 {
-                    eventsHub.PlayerWonEvent.RaiseEvent("Player 2 won!");
+                    eventsHub.PlayerWonEvent.RaiseEvent(player2WinMessage);
                 }
             }
         }
@@ -54,6 +74,11 @@ namespace Pong
         {
             Score1 = 0;
             Score2 = 0;
+        }
+
+        public void TryLaunchTimer()
+        {
+            timer.StartTimer(gameSettings.GameTime);
         }
 
         private void OnScoreGoal(object gatesColliderObject)

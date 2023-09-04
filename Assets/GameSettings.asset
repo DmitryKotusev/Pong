@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49ea6fbd23b9f545b9b698ebaab8ffc, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  gameTime: 120
-  requiredScoreCount: 3
+  gameTime: 180
+  requiredScoreCount: 4
   boosterTypeSpawnWieghts:
-  - 1
+  - 2
   - 1
   - 1
   - 1

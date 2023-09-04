@@ -6,6 +6,7 @@ namespace Pong
     public class GameSettings : ScriptableObject
     {
         [Tooltip("The time the game lasts (in seconds)")]
+        [Range(0, 10000f)]
         [SerializeField] private float gameTime = 120f;
         [Tooltip("Amount of points required to collect to win the game")]
         [SerializeField] private int requiredScoreCount = 2;
