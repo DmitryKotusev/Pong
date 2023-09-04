@@ -14,9 +14,12 @@ namespace Pong
         [SerializeField] protected BoxCollider2D upperBorderCollider;
         [SerializeField] protected BoxCollider2D lowerBorderCollider;
 
+        protected Vector2 startPlatformScale = new Vector2(0.25f, 2f);
+
         public virtual void ResetController()
         {
             platform.transform.position = new Vector2() { x = platform.transform.position.x, y = 0 };
+            platform.transform.localScale = startPlatformScale;
         }
 
         protected void MovePlatform(float deltaY)
