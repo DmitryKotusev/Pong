@@ -109,11 +109,6 @@ namespace Pong
                     BaseBooster booster = hit.transform.GetComponent<BaseBooster>();
                     booster.OnHit();
 
-                    if (booster is CloneBallBooster)
-                    {
-                        poolHandler.ReturnToPool(this);
-                    }
-
                     Debug.Log($"[Ball] Update, hit booster");
                 }
             }

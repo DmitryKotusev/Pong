@@ -119,7 +119,7 @@ namespace Pong
 
             if (booster is CloneBallBooster)
             {
-                for (int i = 0; i < gameSettings.BallCloneBoosterAmount; i++)
+                for (int i = 0; i < gameSettings.BallCloneBoosterAmount - 1; i++)
                 {
                     SpawnBallAtSpecificPosition(booster.transform.position);
                 }

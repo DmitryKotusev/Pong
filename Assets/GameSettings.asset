@@ -21,8 +21,8 @@ MonoBehaviour:
   - 1
   boosterSpawnTime: 20
   ballStartSpeed: 10
-  ballBounceSpeedIncrease: 0.5
-  ballMaxSpeed: 40
+  ballBounceSpeedIncrease: 0.8
+  ballMaxSpeed: 50
   ballSpawnPauseTime: 2
   ballCloneBoosterAmount: 2
   playerPlatformMovementSpeed: 15
